@@ -1,0 +1,9 @@
+[package]
+name = "gigabyte-kbd-backlight"
+version = "0.1.14"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+nix = { version = "0.29", features = ["user", "fs"] }
+signal-hook = "0.3"
