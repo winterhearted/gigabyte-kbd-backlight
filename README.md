@@ -45,6 +45,31 @@ gigabyte-kbd-backlight set-brightness 5       # set brightness (0-9)
 gigabyte-kbd-backlight adjust-brightness -2   # adjust brightness by delta
 ```
 
+## Systemd Service
+
+Create `/etc/systemd/system/gigabyte-kbd-backlight.service`:
+
+```ini
+[Unit]
+Description=Gigabyte keyboard backlight daemon
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/gigabyte-kbd-backlight daemon
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Enable and start:
+
+```
+sudo systemctl enable --now gigabyte-kbd-backlight
+```
+
 ## Technical Reference
 
 Protocol reverse-engineered from DSDT disassembly (`/sys/firmware/acpi/tables/DSDT`) and empirical testing on my Gigabyte G6X9MG.
