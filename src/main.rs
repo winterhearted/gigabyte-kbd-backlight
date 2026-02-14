@@ -25,7 +25,7 @@ fn run(command: Command) -> error::Result<()> {
         Command::Daemon => daemon::Daemon::run(),
         cmd => {
             let request = command_to_request(cmd)?;
-            client::send_commnad(&request)
+            client::send_command(&request)
         }
     }
 }
@@ -42,7 +42,7 @@ fn command_to_request(cmd: Command) -> error::Result<Request> {
             if level > 9 {
                 return Err(Error::InvalidBrightness(level));
             }
-            Ok(Request::Brightnesss(level))
+            Ok(Request::Brightness(level))
         }
         Command::AdjustBrightness { delta } => {
             let delta: i8 = delta.parse().map_err(|_| {

@@ -8,7 +8,7 @@ pub enum Request {
     On,
     Off,
     SetColor { r: u8, g: u8, b: u8 },
-    Brightnesss(u8),
+    Brightness(u8),
     AdjustBrightness(i8),
 }
 
@@ -47,7 +47,7 @@ impl Request {
                     .ok_or_else(|| Error::Protocol("missing level".into()))?
                     .parse()
                     .map_err(|_| Error::Protocol("invalid level".into()))?;
-                Ok(Request::Brightnesss(level))
+                Ok(Request::Brightness(level))
             }
             "ADJUST" => {
                 let delta: i8 = parts
@@ -66,7 +66,7 @@ impl Request {
             Request::On => "ON".into(),
             Request::Off => "OFF".into(),
             Request::SetColor { r, g, b } => format!("COLOR {r} {g} {b}"),
-            Request::Brightnesss(level) => format!("BRIGHTNESS {level}"),
+            Request::Brightness(level) => format!("BRIGHTNESS {level}"),
             Request::AdjustBrightness(delta) => format!("ADJUST {delta}"),
         }
     }

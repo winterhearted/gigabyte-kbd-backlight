@@ -107,7 +107,7 @@ impl Daemon {
                     "color #{r:02X}{g:02X}{b:02X}"
                 )))
             }
-            Request::Brightnesss(level) => {
+            Request::Brightness(level) => {
                 if *level > 9 {
                     return Err(Error::InvalidBrightness(*level));
                 }

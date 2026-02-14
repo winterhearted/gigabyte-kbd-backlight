@@ -4,7 +4,7 @@ use std::os::unix::net::UnixStream;
 use crate::error::{Error, Result};
 use crate::protocol::{Request, SOCKET_PATH};
 
-pub fn send_commnad(request: &Request) -> Result<()> {
+pub fn send_command(request: &Request) -> Result<()> {
     let mut stream = UnixStream::connect(SOCKET_PATH).map_err(|e| {
         if e.kind() == std::io::ErrorKind::ConnectionRefused
             || e.kind() == std::io::ErrorKind::NotFound
